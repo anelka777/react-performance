@@ -1,39 +1,25 @@
-# Performance Report
+# Performance Optimization Report
 
-## Baseline (Before Optimization)
+## Baseline Measurements
 
-### Interactions
+### Interaction A: Sort countries
+- **Commit duration**: N/A
+- **Render duration**: 530.7 ms
+- **Screenshot**: ![Sort baseline](screenshots/baseline/sort.png)
 
-| Interaction | Render (ms) | Caused by |
-|---|---|---|
-| Search (Belarus) | 146.8ms | App |
-| Year change (2019) | 713.5ms | App |
-| Sort (Name Desc) | 530.7ms | App |
-| Toggle columns | 492.3ms | App |
+### Interaction B: Search countries
+- **Commit duration**: N/A
+- **Render duration**: 146.8 ms
+- **Screenshot**: ![Search baseline](screenshots/baseline/search.png)
 
-### Screenshots
+### Interaction C: Change year
+- **Commit duration**: N/A
+- **Render duration**: 713.5 ms
+- **Screenshot**: ![Year change baseline](screenshots/baseline/year.png)
 
-#### Search
-![Search baseline](./screenshots/baseline-search.png)
+### Interaction D: Toggle column
+- **Commit duration**: N/A
+- **Render duration**: 492.3 ms
+- **Screenshot**: ![Columns baseline](screenshots/baseline/columns.png)
 
-#### Year change
-![Year change baseline](./screenshots/baseline-year.png)
 
-#### Sort
-![Sort baseline](./screenshots/baseline-sort.png)
-
-#### Toggle columns
-![Columns baseline](./screenshots/baseline-columns.png)
-
-### Observations
-- All updates caused by App component re-rendering entire tree
-- Year change is the slowest interaction (713.5ms)
-- No memoization — all components re-render on every state change
-- `key={index}` used instead of stable keys
-- Heavy calculations (filter, sort, createYearDataMap) run on every render
-
-### Summary
-
-- **Total render time across all interactions:** ~1883ms
-- **Average render time:** ~471ms
-- **Main bottleneck:** CountryList renders all countries on every state change without any memoization
